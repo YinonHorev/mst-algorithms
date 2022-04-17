@@ -4,42 +4,42 @@
 //
 //  Created by Yinon Horev on 13/04/2022.
 //
-using namespace std;
 
 #include <iostream>
 #include "graph.hpp"
 
 
-void display_AdjList(adjNode* ptr, int i);
+static void PrintGraph(DirectedGraph &g) {
+    std::cout<<"Graph adjacency list "<< std::endl <<"(start_vertex, end_vertex, weight):"<< std::endl;
+    for (int i = 0; i < 6; i++)
+    {
+        // display adjacent vertices of vertex i
+        for (GraphEdge edge: g.GetAdjList(i))
+        {
+            std::cout << "(" << i << ", " << edge.startVertex
+            << ", " << edge.weight << ") ";
+        }
+        std::cout << std::endl;
+    }
+}
 
 int main(int argc, const char * argv[]) {
     // graph edges array.
-    graphEdge edges[] = {
+    DirectedGraph g{};
+    GraphEdge edges[] = {
         // (x, y, w) -> edge from x to y with weight w
         {0,1,2},{0,2,4},{1,4,3},{2,3,2},{3,1,4},{4,3,3}
     };
-    int N = 6;      // Number of vertices in the graph
-    // calculate number of edges
-    int n = sizeof(edges)/sizeof(edges[0]);
-    // construct graph
-    DiaGraph diagraph(edges, n, N);
-    // print adjacency list representation of graph
-    cout<<"Graph adjacency list "<<endl<<"(start_vertex, end_vertex, weight):"<<endl;
-    for (int i = 0; i < N; i++)
+    g.MakeEmptyGraph(6);
+    for (GraphEdge edge: edges)
     {
-        // display adjacent vertices of vertex i
-        display_AdjList(diagraph.head[i], i);
+        g.AddEdge(edge.startVertex, edge.endVertex, edge.weight);
     }
+    
+    PrintGraph(g);
+    
+    g.RemoveEdge(0, 1);
+    
+    PrintGraph(g);
     return 0;
-}
-
-// print all adjacent vertices of given vertex
-void display_AdjList(adjNode* ptr, int i)
-{
-    while (ptr != nullptr) {
-        cout << "(" << i << ", " << ptr->val
-            << ", " << ptr->cost << ") ";
-        ptr = ptr->next;
-    }
-    cout << endl;
 }
