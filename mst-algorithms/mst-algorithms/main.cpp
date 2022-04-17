@@ -23,8 +23,7 @@ static void PrintGraph(DirectedGraph &g) {
     }
 }
 
-int main(int argc, const char * argv[]) {
-    // graph edges array.
+static void TestGraphFunctions() {
     DirectedGraph g{};
     GraphEdge edges[] = {
         // (x, y, w) -> edge from x to y with weight w
@@ -41,5 +40,10 @@ int main(int argc, const char * argv[]) {
     g.RemoveEdge(0, 1);
     
     PrintGraph(g);
+}
+
+int main(int argc, const char * argv[]) {
+    // graph edges array.
+    TestGraphFunctions();
     return 0;
 }
