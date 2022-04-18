@@ -30,6 +30,12 @@ public:
         this->arrSize = size;
     }
 
+    ~UnionFind(){
+        free(this->arr);
+    }
+    
+    
+    
     void MakeSet(int i)
     {
         arr[i].parent = i;

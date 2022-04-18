@@ -19,15 +19,15 @@ void UnionFind::PrintForest() {
 int UnionFind::Find(int x)
 {
     if (arr[x].parent != x)
-            arr[x].parent = Find(arr[x].parent);
+        arr[x].parent = Find(arr[x].parent);
      
-        return arr[x].parent;
+    return arr[x].parent;
 }
 
 void UnionFind:: Union(int x, int y)
 {
     if (arr[x].size < arr[y].size)
-            arr[x].parent = y;
+        arr[x].parent = y;
     else if (arr[y].size < arr[x].size)
         arr[y].parent = x;
         
@@ -35,7 +35,7 @@ void UnionFind:: Union(int x, int y)
         arr[y].parent = x;
         arr[x].size++;
 
-    }
+        }
 }
 
 void UnionFind::PrintNode(int x){

@@ -8,6 +8,8 @@
 #include <iostream>
 #include "graph.hpp"
 #include "UnionFind.hpp"
+#include "Kruskal.hpp"
+
 using namespace std;
 
 
@@ -33,6 +35,29 @@ int testUnionFind(){
     test.PrintForest();
     return 0;
 
+}
+
+
+void testKruskal(){
+    int size = 6;
+    DirectedGraph g{};
+    GraphEdge edges[] = {
+        // (x, y, w) -> edge from x to y with weight w
+        {1,2,16},{1,3,13},{2,3,10},
+        {2,4,12},{4,3,9},{3,5,14},
+        {5,4,7},{5,6,4},{4,6,20},
+    };
+    g.MakeEmptyGraph(size);
+    for (GraphEdge edge: edges)
+    {
+        g.AddEdge(edge.startVertex, edge.endVertex, edge.weight);
+    }
+    
+    Kruskal k = Kruskal(g);
+    int minWeight = k.RunKruskal();
+    cout << minWeight << endl;
+    
+    
 }
 
 
@@ -71,7 +96,8 @@ static void TestGraphFunctions() {
 
 int main(int argc, const char * argv[]) {
     // graph edges array.
-    TestGraphFunctions();
+    //TestGraphFunctions();
+    testKruskal();
     return 0;
 }
 

@@ -32,6 +32,7 @@ std::vector<GraphEdge> DirectedGraph::GetAdjList(unsigned int vertex_v)
 void DirectedGraph::AddEdge(unsigned int vertex_u, unsigned int vertex_v, int weight)
 {
     head[vertex_u].push_back(makeEdge(vertex_u,vertex_v, weight));
+    this->NumberOfEdges++;
 }
 //
 GraphEdge DirectedGraph::makeEdge(unsigned int vertex_u, unsigned int vertex_v, int weight)
@@ -46,5 +47,6 @@ void DirectedGraph::RemoveEdge(unsigned int vertex_u, unsigned int vertex_v)
                                      head[vertex_u].end(),
                                [=](GraphEdge element) { return element.endVertex == vertex_v; }),
                       head[vertex_u].end());
+    this->NumberOfEdges--;
 }
 

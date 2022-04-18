@@ -21,11 +21,15 @@ class DirectedGraph{
     
     GraphEdge makeEdge(unsigned int vertex_u, unsigned int vertex_v, int weight);
     int NumberOfNodes;  // number of nodes in the graph
+    int NumberOfEdges=0;
+    
     
 public:
     
     std::vector<GraphEdge> *head;                //adjacency list as array of pointers
     
+    int GetNumberOfNodes() {return this->NumberOfNodes;};
+    int GetNumberOfEdges() {return this->NumberOfEdges;};
     void MakeEmptyGraph(unsigned int NumberOfNodes);
     bool IsAdjacent(unsigned int vertex_u, unsigned int vertex_v);
     std::vector<GraphEdge> GetAdjList(unsigned int vertex_v);
