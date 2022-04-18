@@ -9,31 +9,30 @@
 #define graph_hpp
 
 #include <stdio.h>
+#include <vector>
+
 // structure to store edges
-struct graphEdge {
-    int start_ver, end_ver, weight;
+struct GraphEdge {
+    unsigned int startVertex, endVertex;
+    int weight;
 };
 
-// stores adjacency list items
-struct adjNode {
-    int val, cost;
-    adjNode* next;
-};
-
-class DiaGraph{
-    // insert new nodes into adjacency list from given graph
-    adjNode* getAdjListNode(int value, int weight, adjNode* head);
-    int N;  // number of nodes in the graph
+class DirectedGraph{
+    
+    GraphEdge makeEdge(unsigned int vertex_u, unsigned int vertex_v, int weight);
+    int NumberOfNodes;  // number of nodes in the graph
+    
 public:
-    adjNode **head;                //adjacency list as array of pointers
-    // Constructor
-    DiaGraph(graphEdge edges[], int n, int N);
-    // Destructor
-    ~DiaGraph() {
-    for (int i = 0; i < N; i++)
-        delete[] head[i];
-        delete[] head;
-     }
+    
+    std::vector<GraphEdge> *head;                //adjacency list as array of pointers
+    
+    void MakeEmptyGraph(unsigned int NumberOfNodes);
+    bool IsAdjacent(unsigned int vertex_u, unsigned int vertex_v);
+    std::vector<GraphEdge> GetAdjList(unsigned int vertex_v);
+    void AddEdge(unsigned int vertex_u, unsigned int vertex_v, int weight);
+    void RemoveEdge(unsigned int vertex_u, unsigned int vertex_v);
+    
+
 };
 
 #endif /* graph_hpp */

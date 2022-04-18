@@ -43,3 +43,5 @@ void UnionFind::PrintNode(int x){
     cout << "arr["<<x<<"].size = " << arr[x].size << endl;
     
 }
+
+
