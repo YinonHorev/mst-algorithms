@@ -40,7 +40,7 @@ int testUnionFind(){
 
 void testKruskal(){
     int size = 6;
-    DirectedGraph g{};
+    UnDirectedGraph g{};
     GraphEdge edges[] = {
         // (x, y, w) -> edge from x to y with weight w
         {1,2,16},{1,3,13},{2,3,10},
@@ -61,7 +61,7 @@ void testKruskal(){
 }
 
 
-static void PrintGraph(DirectedGraph &g) {
+static void PrintGraph(UnDirectedGraph &g) {
     std::cout<<"Graph adjacency list "<< std::endl <<"(start_vertex, end_vertex, weight):"<< std::endl;
     for (int i = 0; i < 6; i++)
     {
@@ -76,7 +76,7 @@ static void PrintGraph(DirectedGraph &g) {
 }
 
 static void TestGraphFunctions() {
-    DirectedGraph g{};
+    UnDirectedGraph g{};
     GraphEdge edges[] = {
         // (x, y, w) -> edge from x to y with weight w
         {0,1,2},{0,2,4},{1,4,3},{2,3,2},{3,1,4},{4,3,3}

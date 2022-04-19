@@ -16,12 +16,12 @@ using namespace std;
 
 class Kruskal {
     
-    DirectedGraph graph;
+    UnDirectedGraph graph;
     
     
     
 public:
-    Kruskal(DirectedGraph graph) {
+    Kruskal(UnDirectedGraph graph) {
         this->graph = graph;
         
     }
@@ -58,7 +58,7 @@ private:
     void swapGraphEdge(GraphEdge *a, GraphEdge *b);
     int partition (GraphEdge * arr, int low, int high);
     void quickSort(GraphEdge * arr, int low, int high);
-    GraphEdge* getEdgeList(DirectedGraph graph , int NumOfNodes, int NumOfEdges)
+    GraphEdge* getEdgeList(UnDirectedGraph graph , int NumOfNodes, int NumOfEdges)
     {
         GraphEdge* edgeList = (GraphEdge*)malloc(NumOfEdges * sizeof(GraphEdge));
         int counter = 0;

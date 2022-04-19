@@ -22,7 +22,7 @@ struct GraphVertex {
     std::vector<GraphEdge> edges;
 };
 
-class DirectedGraph{
+class UnDirectedGraph{
     
     GraphEdge makeEdge(unsigned int vertex_u, unsigned int vertex_v, int weight);
     int NumberOfNodes;  // number of nodes in the graph
