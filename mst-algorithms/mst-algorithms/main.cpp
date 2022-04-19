@@ -68,7 +68,7 @@ static void PrintGraph(DirectedGraph &g) {
         // display adjacent vertices of vertex i
         for (GraphEdge edge: g.GetAdjList(i))
         {
-            std::cout << "(" << i << ", " << edge.startVertex
+            std::cout << "(" << edge.startVertex << ", " << edge.endVertex
             << ", " << edge.weight << ") ";
         }
         std::cout << std::endl;
@@ -96,7 +96,7 @@ static void TestGraphFunctions() {
 
 int main(int argc, const char * argv[]) {
     // graph edges array.
-    //TestGraphFunctions();
+    TestGraphFunctions();
     testKruskal();
     return 0;
 }

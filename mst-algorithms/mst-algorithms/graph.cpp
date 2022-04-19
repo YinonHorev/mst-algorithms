@@ -10,7 +10,7 @@
 
 void DirectedGraph::MakeEmptyGraph(unsigned int NumberOfNodes)
 {
-    head = new std::vector<GraphEdge>[NumberOfNodes];
+    head.resize(NumberOfNodes);
     this->NumberOfNodes = NumberOfNodes;
 }
 
@@ -43,7 +43,7 @@ GraphEdge DirectedGraph::makeEdge(unsigned int vertex_u, unsigned int vertex_v, 
 //
 void DirectedGraph::RemoveEdge(unsigned int vertex_u, unsigned int vertex_v)
 {
-    head->erase(std::remove_if(head[vertex_u].begin(),
+    head[vertex_u].erase(std::remove_if(head[vertex_u].begin(),
                                      head[vertex_u].end(),
                                [=](GraphEdge element) { return element.endVertex == vertex_v; }),
                       head[vertex_u].end());

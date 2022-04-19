@@ -26,7 +26,7 @@ class DirectedGraph{
     
 public:
     
-    std::vector<GraphEdge> *head;                //adjacency list as array of pointers
+    std::vector<std::vector<GraphEdge>> head;                //adjacency list as array of pointers
     
     int GetNumberOfNodes() {return this->NumberOfNodes;};
     int GetNumberOfEdges() {return this->NumberOfEdges;};
