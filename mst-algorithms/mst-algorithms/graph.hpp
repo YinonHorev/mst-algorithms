@@ -18,7 +18,7 @@ struct GraphEdge {
 };
 
 struct GraphVertex {
-    int vertex;
+    unsigned int vertex;
     std::vector<GraphEdge> edges;
 };
 

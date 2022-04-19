@@ -11,6 +11,9 @@
 void UnDirectedGraph::MakeEmptyGraph(unsigned int NumberOfNodes)
 {
     head.resize(NumberOfNodes);
+    for (int i = 0; i < NumberOfNodes; i++) {
+        head[i].vertex = i;
+    }
     this->NumberOfNodes = NumberOfNodes;
 }
 

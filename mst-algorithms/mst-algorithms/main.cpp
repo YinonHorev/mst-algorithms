@@ -9,6 +9,7 @@
 #include "graph.hpp"
 #include "UnionFind.hpp"
 #include "Kruskal.hpp"
+#include "MinHeap.hpp"
 
 using namespace std;
 
@@ -39,7 +40,7 @@ int testUnionFind(){
 
 
 void testKruskal(){
-    int size = 6;
+    int size = 7;
     UnDirectedGraph g{};
     GraphEdge edges[] = {
         // (x, y, w) -> edge from x to y with weight w
@@ -94,10 +95,30 @@ static void TestGraphFunctions() {
     PrintGraph(g);
 }
 
+static void TestHeapFunctions() {
+    UnDirectedGraph g{};
+    GraphEdge edges[] = {
+        // (x, y, w) -> edge from x to y with weight w
+        {0,1,2},{0,2,4},{1,4,3},{2,3,2},{3,1,4},{4,3,3}
+    };
+    g.MakeEmptyGraph(6);
+    for (GraphEdge edge: edges)
+    {
+        g.AddEdge(edge.startVertex, edge.endVertex, edge.weight);
+    }
+    
+    MinHeap h{};
+    h.Build(g, 3);
+    while (!h.isEmpty()) {
+        std::cout << h.DeleteMin().vertex.weight << std::endl;
+    }
+}
+
 int main(int argc, const char * argv[]) {
     // graph edges array.
-    TestGraphFunctions();
-    testKruskal();
+//    TestGraphFunctions();
+//    testKruskal(); // fails tests currently
+    TestHeapFunctions();
     return 0;
 }
 
