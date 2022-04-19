@@ -17,6 +17,11 @@ struct GraphEdge {
     int weight;
 };
 
+struct GraphVertex {
+    int vertex;
+    std::vector<GraphEdge> edges;
+};
+
 class DirectedGraph{
     
     GraphEdge makeEdge(unsigned int vertex_u, unsigned int vertex_v, int weight);
@@ -26,7 +31,7 @@ class DirectedGraph{
     
 public:
     
-    std::vector<std::vector<GraphEdge>> head;                //adjacency list as array of pointers
+    std::vector<GraphVertex> head;                //adjacency list as array of pointers
     
     int GetNumberOfNodes() {return this->NumberOfNodes;};
     int GetNumberOfEdges() {return this->NumberOfEdges;};

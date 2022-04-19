@@ -16,7 +16,7 @@ void DirectedGraph::MakeEmptyGraph(unsigned int NumberOfNodes)
 
 bool DirectedGraph::IsAdjacent(unsigned int vertex_u, unsigned int vertex_v)
 {
-    for (GraphEdge edge: head[vertex_u])
+    for (GraphEdge edge: head[vertex_u].edges)
     {
         if (edge.endVertex == vertex_v)
             return true;
@@ -26,12 +26,12 @@ bool DirectedGraph::IsAdjacent(unsigned int vertex_u, unsigned int vertex_v)
 //
 std::vector<GraphEdge> DirectedGraph::GetAdjList(unsigned int vertex_v)
 {
-    return head[vertex_v];
+    return head[vertex_v].edges;
 }
 //
 void DirectedGraph::AddEdge(unsigned int vertex_u, unsigned int vertex_v, int weight)
 {
-    head[vertex_u].push_back(makeEdge(vertex_u,vertex_v, weight));
+    head[vertex_u].edges.push_back(makeEdge(vertex_u,vertex_v, weight));
     this->NumberOfEdges++;
 }
 //
@@ -43,10 +43,10 @@ GraphEdge DirectedGraph::makeEdge(unsigned int vertex_u, unsigned int vertex_v, 
 //
 void DirectedGraph::RemoveEdge(unsigned int vertex_u, unsigned int vertex_v)
 {
-    head[vertex_u].erase(std::remove_if(head[vertex_u].begin(),
-                                     head[vertex_u].end(),
+    head[vertex_u].edges.erase(std::remove_if(head[vertex_u].edges.begin(),
+                                     head[vertex_u].edges.end(),
                                [=](GraphEdge element) { return element.endVertex == vertex_v; }),
-                      head[vertex_u].end());
+                      head[vertex_u].edges.end());
     this->NumberOfEdges--;
 }
 
