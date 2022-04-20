@@ -50,22 +50,8 @@ void MinHeap::Build(UnDirectedGraph G, unsigned int initial_vertex)
     std::for_each(heapArray.rbegin() + (heapArray.size()/2) + 1 , heapArray.rend() , [this](HeapNode &node){fixHeapDown(node.indexInHeap);});
 }
 
-//void MinHeap::Insert(HeapNode* node) {
-//
-//    if (heapSize == heapMaxSize)
-//    {
-//        cout << "error - could not Insert key" << endl;
-//        exit(1);
-//    }
-//
-//    int i = heapSize;
-//    arr[i] = node;
-//    arr[i]->indexInHeap = i;
-//    fixHeapUp(i);
-//    heapSize++;
-//}
-
-HeapNode MinHeap::DeleteMin() {
+HeapNode MinHeap::DeleteMin()
+{
     HeapNode min = heapArray.front();
     swap(heapArray.front(), heapArray.back());
     heapArray.pop_back();

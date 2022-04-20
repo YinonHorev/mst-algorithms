@@ -41,9 +41,6 @@ public:
         unsigned int t = vertexsIndexesInHeap[a.vertex.VertexIndex];
         vertexsIndexesInHeap[a.vertex.VertexIndex] = vertexsIndexesInHeap[b.vertex.VertexIndex];
         vertexsIndexesInHeap[b.vertex.VertexIndex] = t;
-//        int tempIndex = a.indexInHeap;
-//        a.indexInHeap = b.indexInHeap;
-//        b.indexInHeap = tempIndex;
         a = b;
         b = temp;
     }

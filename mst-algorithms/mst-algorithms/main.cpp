@@ -97,32 +97,26 @@ static void TestGraphFunctions() {
 }
 
 static void TestHeapFunctions() {
+    int current, previous = -1;
     UnDirectedGraph g{};
-    GraphEdge edges[] = {
-        // (x, y, w) -> edge from x to y with weight w
-        {0,1,2},{0,2,4},{1,4,3},{2,3,2},{3,1,4},{4,3,3}
-    };
-    g.MakeEmptyGraph(6);
-    for (GraphEdge edge: edges)
-    {
-        g.AddEdge(edge.startVertex, edge.endVertex, edge.weight);
-    }
+    g.MakeEmptyGraph(5);
     
     MinHeap h{};
     h.Build(g, 2);
+    h.DecreaseKey(0, 2);
     h.DecreaseKey(3, 1);
     h.DecreaseKey(4, 2);
+    h.DecreaseKey(1, 2);
     while (!h.isEmpty()) {
-        std::cout << h.DeleteMin().key << std::endl;
+        current = h.DeleteMin().key;
+        if (previous > current)
+            std::cout << "Test Heap Failed" << std::endl;
+        previous = current;
     }
 }
 
-static void TestPrimFunctions() {
+static void TestPrim() {
     UnDirectedGraph g{};
-    GraphEdge edges[] = {
-        // (x, y, w) -> edge from x to y with weight w
-        {0,1,2},{0,2,4},{1,4,3},{2,3,2},{3,1,4},{4,3,3}
-    };
     GraphEdge edges2[] = {
         // (x, y, w) -> edge from x to y with weight w
         {0,1,2},{1,2,4},{1,3,3},{1,4,5},{2,3,5},{2,5,9},{3,4,5},{3,5,6},{3,6,4},{4,6,2},{5,6,6}
@@ -140,8 +134,8 @@ int main(int argc, const char * argv[]) {
     // graph edges array.
 //    TestGraphFunctions();
 //    testKruskal(); // fails tests currently
-//    TestHeapFunctions();
-    TestPrimFunctions();
+    TestHeapFunctions();
+    TestPrim();
     return 0;
 }
 
