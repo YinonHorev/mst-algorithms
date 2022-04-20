@@ -8,23 +8,46 @@ void MinHeap::fixHeapDown(int nodeIndex) {
     int left = getLeft(nodeIndex);
     int right = getRight(nodeIndex);
 
-    if (left < heapSize && arr[left]->vertex.weight < arr[min]->vertex.weight)
+    if (left < heapArray.size() && heapArray[left].key < heapArray[min].key && heapArray[right].key > heapArray[left].key)
         min = left;
-    if (right < heapSize && arr[right]->vertex.weight < arr[min]->vertex.weight)
+    
+    if (right < heapArray.size() && heapArray[right].key < heapArray[min].key)
         min = right;
+    
     if (min != nodeIndex) {
-        swap(arr[nodeIndex], arr[min]);
+        swap(heapArray[nodeIndex], heapArray[min]);
         fixHeapDown(min);
     }
 }
 
 void  MinHeap::fixHeapUp(int nodeIndex) {
-    if (nodeIndex && arr[getParent(nodeIndex)]->vertex.weight > arr[nodeIndex]->vertex.weight)
+    if (nodeIndex && heapArray[getParent(nodeIndex)].key > heapArray[nodeIndex].key)
     {
-        swap(arr[nodeIndex], arr[getParent(nodeIndex)]);
+        swap(heapArray[nodeIndex], heapArray[getParent(nodeIndex)]);
         fixHeapUp(getParent(nodeIndex));
-            
     }
+}
+
+void MinHeap::Build(UnDirectedGraph G, unsigned int initial_vertex)
+{
+    unsigned int i = 0;
+    for(GraphVertex &v: G.head)
+    {
+        vertexsIndexesInHeap.push_back(i);
+        
+        heapArray.push_back(HeapNode{
+            .vertex{.VertexIndex = v.vertex, .edges = v.edges},
+            .indexInHeap = static_cast<unsigned int>(heapArray.size()),
+            .key = INT32_MAX
+        });
+        i++;
+    }
+    
+    heapArray[initial_vertex].key = 0;
+    
+//    std::for_each(G.head.begin(), G.head.end(),
+//                  [this](GraphVertex &v){ arr.push_back(HeapNode{.vertex{.VertexIndex = v.vertex}, .indexInHeap = static_cast<int>(arr.size() - 1)}); });
+    std::for_each(heapArray.rbegin() + (heapArray.size()/2) + 1 , heapArray.rend() , [this](HeapNode &node){fixHeapDown(node.indexInHeap);});
 }
 
 //void MinHeap::Insert(HeapNode* node) {
@@ -42,24 +65,17 @@ void  MinHeap::fixHeapUp(int nodeIndex) {
 //    heapSize++;
 //}
 
-HeapNode* MinHeap::DeleteMin() {
-    HeapNode* min = arr[0];
-    
-    heapSize--;
-    swap(arr[0], arr[heapSize]);
-    arr[heapSize] = nullptr;
+HeapNode MinHeap::DeleteMin() {
+    HeapNode min = heapArray.front();
+    swap(heapArray.front(), heapArray.back());
+    heapArray.pop_back();
     fixHeapDown(0);
     return min;
 
 }
 
 
-void MinHeap::DecreaseKey(int index, int weight) {
-//    if (heapSize == index) {
-//        delete arr[heapSize];
-//        arr[heapSize] = nullptr;
-//        return;
-//    }
-    arr[index]->vertex.weight = weight;
-    fixHeapUp(index);
+void MinHeap::DecreaseKey(int vertex, int weight) {
+    heapArray[vertexsIndexesInHeap[vertex]].key = weight;
+    fixHeapUp(vertexsIndexesInHeap[vertex]); // assuming key only decreses;
 }

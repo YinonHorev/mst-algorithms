@@ -10,6 +10,7 @@
 #include "UnionFind.hpp"
 #include "Kruskal.hpp"
 #include "MinHeap.hpp"
+#include "Prim.hpp"
 
 using namespace std;
 
@@ -108,17 +109,39 @@ static void TestHeapFunctions() {
     }
     
     MinHeap h{};
-    h.Build(g, 3);
+    h.Build(g, 2);
+    h.DecreaseKey(3, 1);
+    h.DecreaseKey(4, 2);
     while (!h.isEmpty()) {
-        std::cout << h.DeleteMin().vertex.weight << std::endl;
+        std::cout << h.DeleteMin().key << std::endl;
     }
+}
+
+static void TestPrimFunctions() {
+    UnDirectedGraph g{};
+    GraphEdge edges[] = {
+        // (x, y, w) -> edge from x to y with weight w
+        {0,1,2},{0,2,4},{1,4,3},{2,3,2},{3,1,4},{4,3,3}
+    };
+    GraphEdge edges2[] = {
+        // (x, y, w) -> edge from x to y with weight w
+        {0,1,2},{1,2,4},{1,3,3},{1,4,5},{2,3,5},{2,5,9},{3,4,5},{3,5,6},{3,6,4},{4,6,2},{5,6,6}
+    };
+    g.MakeEmptyGraph(7);
+    for (GraphEdge edge: edges2)
+    {
+        g.AddEdge(edge.startVertex, edge.endVertex, edge.weight);
+    }
+    PrimMST(g);
+    
 }
 
 int main(int argc, const char * argv[]) {
     // graph edges array.
 //    TestGraphFunctions();
 //    testKruskal(); // fails tests currently
-    TestHeapFunctions();
+//    TestHeapFunctions();
+    TestPrimFunctions();
     return 0;
 }
 

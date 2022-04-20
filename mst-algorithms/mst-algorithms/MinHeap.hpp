@@ -2,26 +2,24 @@
 #define MinHeap_hpp
 
 #include <stdio.h>
-#include <string>
-using namespace std;
+#include <vector>
+#include "graph.hpp"
 
-struct MstVertex {
-    int weight;
+struct Vertex {
     unsigned int VertexIndex;
+    std::vector<GraphEdge> edges;
 };
 
 struct HeapNode {
-    MstVertex vertex;
-    int indexInHeap;
+    int key;
+    Vertex vertex;
+    unsigned int indexInHeap;
 };
 
 
 class MinHeap {
-    HeapNode** arr;
-    int heapMaxSize;
-    int heapSize;
-
-private:
+    std::vector<unsigned int> vertexsIndexesInHeap;
+    std::vector<HeapNode> heapArray;
     int getLeft(int index) { return (2 * index + 1); }
     int getRight(int index) { return (2 * index + 2); }
     int getParent(int index) { return (index - 1) / 2; }
@@ -29,31 +27,23 @@ private:
     void fixHeapUp(int nodeIndex);
 
 public:
-    MinHeap(int size) {
-        heapMaxSize = size;
-        heapSize = 0;
-        arr = new HeapNode*[heapMaxSize];
-    }
-    ~MinHeap() {
-        delete []arr;
-    }
-//
-//    HeapNode* Min() {
-//        return arr[0];
-//    }
+    HeapNode DeleteMin();
     
-    int getHeapSize() {return heapSize;}
-    
-//    void Insert(HeapNode* node);
-    HeapNode* DeleteMin();
     void DecreaseKey(int index, int weight);
-    bool isEmpty() { return heapSize == 0; }
-    void swap(HeapNode*& a, HeapNode*& b)
+    
+    void Build(UnDirectedGraph G, unsigned int initial_vertex = 0);
+    
+    bool isEmpty() { return heapArray.size() == 0; }
+    
+    void swap(HeapNode& a, HeapNode& b)
     {
-        HeapNode* temp = a;
-        int tempIndex = a->indexInHeap;
-        a->indexInHeap = b->indexInHeap;
-        b->indexInHeap = tempIndex;
+        HeapNode temp = a;
+        unsigned int t = vertexsIndexesInHeap[a.vertex.VertexIndex];
+        vertexsIndexesInHeap[a.vertex.VertexIndex] = vertexsIndexesInHeap[b.vertex.VertexIndex];
+        vertexsIndexesInHeap[b.vertex.VertexIndex] = t;
+//        int tempIndex = a.indexInHeap;
+//        a.indexInHeap = b.indexInHeap;
+//        b.indexInHeap = tempIndex;
         a = b;
         b = temp;
     }
