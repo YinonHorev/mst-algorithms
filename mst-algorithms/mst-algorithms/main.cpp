@@ -11,6 +11,7 @@
 #include "Kruskal.hpp"
 #include "MinHeap.hpp"
 #include "Prim.hpp"
+#include "ConfigurationParser.hpp"
 
 using namespace std;
 
@@ -116,13 +117,16 @@ static void TestHeapFunctions() {
 }
 
 static void TestPrim() {
+    int size = 7;
     UnDirectedGraph g{};
-    GraphEdge edges2[] = {
+    GraphEdge edges[] = {
         // (x, y, w) -> edge from x to y with weight w
-        {0,1,2},{1,2,4},{1,3,3},{1,4,5},{2,3,5},{2,5,9},{3,4,5},{3,5,6},{3,6,4},{4,6,2},{5,6,6}
+        {1,2,16},{1,3,13},{2,3,10},
+        {2,4,12},{4,3,9},{3,5,14},
+        {5,4,7},{5,6,4},{4,6,20},
     };
-    g.MakeEmptyGraph(7);
-    for (GraphEdge edge: edges2)
+    g.MakeEmptyGraph(size);
+    for (GraphEdge edge: edges)
     {
         g.AddEdge(edge.startVertex, edge.endVertex, edge.weight);
     }
@@ -130,12 +134,46 @@ static void TestPrim() {
     
 }
 
+const char* parseFileName(int argc, const char **argv) {
+    if (not (argc == 2))
+    {
+        cout << "Redundent arguments ! You have entered " << argc
+        << " arguments:" << "\n";
+    }
+        
+    return argv[1];
+}
+
+static void TestFileParser(int argc, const char **argv) {
+    const char* fileName = parseFileName(argc, argv); // should be configured in debug scheme
+    ConfigurationParser g;
+    g.DigestFile(fileName);
+    cout << g.edgeToDelete.endVertex;
+}
+
 int main(int argc, const char * argv[]) {
+    UnDirectedGraph G;
+    ConfigurationParser config;
+    config.DigestFile(parseFileName(argc, argv));
+    G.MakeEmptyGraph(config.numberOfNodesInGraph);
+    for(GraphEdge edge : config.edges) G.AddEdge(edge);
+    PrimMST(G);
+    G.RemoveEdge(config.edgeToDelete.startVertex, config.edgeToDelete.endVertex);
+    if (not (G.IsGraphConnected()))
+    {
+        cout << "No MST";
+        exit(0);
+    }
+    PrimMST(G);
+//    const char* fileName;
+//    fileName = parseFileName(argc, argv);
     // graph edges array.
 //    TestGraphFunctions();
 //    testKruskal(); // fails tests currently
-    TestHeapFunctions();
-    TestPrim();
+//    TestHeapFunctions();
+//    TestPrim();
+//    TestFileParser(argc, argv);
+    
     return 0;
 }
 

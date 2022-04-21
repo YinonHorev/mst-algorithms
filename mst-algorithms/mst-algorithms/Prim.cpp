@@ -61,7 +61,7 @@ void PrimMST(UnDirectedGraph graph)
         }
     int sum = 0;
     for(int key: keys) sum += key;
-    std::cout << "Prim " << sum;
+    std::cout << "Prim " << sum << std::endl;
 }
  
     // print edges of MST
