@@ -9,5 +9,8 @@
 #define Prim_hpp
 
 #include <stdio.h>
+#include "graph.hpp"
+
+void PrimMST(UnDirectedGraph graph);
 
 #endif /* Prim_hpp */

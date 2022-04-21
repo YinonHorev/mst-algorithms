@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B0B4CC98281061CA00AB8A2F /* ConfigurationParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0B4CC96281061CA00AB8A2F /* ConfigurationParser.cpp */; };
 		B0B5A713280744FA0091C52A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0B5A712280744FA0091C52A /* main.cpp */; };
 		B0B5A71B280C41080091C52A /* graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0B5A719280C41080091C52A /* graph.cpp */; };
-		B0B5A71E280C56340091C52A /* BinaryHeap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0B5A71C280C56340091C52A /* BinaryHeap.cpp */; };
 		B0B5A721280C56560091C52A /* UnionFind.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0B5A71F280C56560091C52A /* UnionFind.cpp */; };
 		B0B5A724280C56860091C52A /* Kruskal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0B5A722280C56860091C52A /* Kruskal.cpp */; };
 		B0B5A727280C56A20091C52A /* Prim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0B5A725280C56A20091C52A /* Prim.cpp */; };
+		B0EB9F61280DDA3B00E84CA2 /* MinHeap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0EB9F60280DDA3B00E84CA2 /* MinHeap.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,18 +29,21 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B0B4CC96281061CA00AB8A2F /* ConfigurationParser.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ConfigurationParser.cpp; sourceTree = "<group>"; };
+		B0B4CC97281061CA00AB8A2F /* ConfigurationParser.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ConfigurationParser.hpp; sourceTree = "<group>"; };
+		B0B4CC9928106A5700AB8A2F /* graphConfig.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = graphConfig.txt; sourceTree = "<group>"; };
 		B0B5A70F280744FA0091C52A /* mst-algorithms */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "mst-algorithms"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0B5A712280744FA0091C52A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		B0B5A719280C41080091C52A /* graph.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = graph.cpp; sourceTree = "<group>"; };
 		B0B5A71A280C41080091C52A /* graph.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = graph.hpp; sourceTree = "<group>"; };
-		B0B5A71C280C56340091C52A /* BinaryHeap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BinaryHeap.cpp; sourceTree = "<group>"; };
-		B0B5A71D280C56340091C52A /* BinaryHeap.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BinaryHeap.hpp; sourceTree = "<group>"; };
 		B0B5A71F280C56560091C52A /* UnionFind.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UnionFind.cpp; sourceTree = "<group>"; };
 		B0B5A720280C56560091C52A /* UnionFind.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UnionFind.hpp; sourceTree = "<group>"; };
 		B0B5A722280C56860091C52A /* Kruskal.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Kruskal.cpp; sourceTree = "<group>"; };
 		B0B5A723280C56860091C52A /* Kruskal.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Kruskal.hpp; sourceTree = "<group>"; };
 		B0B5A725280C56A20091C52A /* Prim.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Prim.cpp; sourceTree = "<group>"; };
 		B0B5A726280C56A20091C52A /* Prim.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Prim.hpp; sourceTree = "<group>"; };
+		B0EB9F5F280DDA3B00E84CA2 /* MinHeap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MinHeap.hpp; sourceTree = "<group>"; };
+		B0EB9F60280DDA3B00E84CA2 /* MinHeap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MinHeap.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,14 +79,17 @@
 				B0B5A712280744FA0091C52A /* main.cpp */,
 				B0B5A719280C41080091C52A /* graph.cpp */,
 				B0B5A71A280C41080091C52A /* graph.hpp */,
-				B0B5A71C280C56340091C52A /* BinaryHeap.cpp */,
-				B0B5A71D280C56340091C52A /* BinaryHeap.hpp */,
 				B0B5A71F280C56560091C52A /* UnionFind.cpp */,
 				B0B5A720280C56560091C52A /* UnionFind.hpp */,
 				B0B5A722280C56860091C52A /* Kruskal.cpp */,
 				B0B5A723280C56860091C52A /* Kruskal.hpp */,
 				B0B5A725280C56A20091C52A /* Prim.cpp */,
 				B0B5A726280C56A20091C52A /* Prim.hpp */,
+				B0EB9F60280DDA3B00E84CA2 /* MinHeap.cpp */,
+				B0EB9F5F280DDA3B00E84CA2 /* MinHeap.hpp */,
+				B0B4CC96281061CA00AB8A2F /* ConfigurationParser.cpp */,
+				B0B4CC97281061CA00AB8A2F /* ConfigurationParser.hpp */,
+				B0B4CC9928106A5700AB8A2F /* graphConfig.txt */,
 			);
 			path = "mst-algorithms";
 			sourceTree = "<group>";
@@ -147,8 +154,9 @@
 				B0B5A721280C56560091C52A /* UnionFind.cpp in Sources */,
 				B0B5A71B280C41080091C52A /* graph.cpp in Sources */,
 				B0B5A713280744FA0091C52A /* main.cpp in Sources */,
+				B0EB9F61280DDA3B00E84CA2 /* MinHeap.cpp in Sources */,
+				B0B4CC98281061CA00AB8A2F /* ConfigurationParser.cpp in Sources */,
 				B0B5A727280C56A20091C52A /* Prim.cpp in Sources */,
-				B0B5A71E280C56340091C52A /* BinaryHeap.cpp in Sources */,
 				B0B5A724280C56860091C52A /* Kruskal.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
