@@ -159,6 +159,7 @@ int main(int argc, const char * argv[]) {
     for(GraphEdge edge : config.edges) G.AddEdge(edge);
     PrimMST(G);
     G.RemoveEdge(config.edgeToDelete.startVertex, config.edgeToDelete.endVertex);
+//    G.RemoveEdge(1, 2); // will make no mst
     if (not (G.IsGraphConnected()))
     {
         cout << "No MST";

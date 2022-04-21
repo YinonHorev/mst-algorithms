@@ -77,12 +77,12 @@ bool UnDirectedGraph::IsGraphConnected()
         color = white;
     }
     
-    for (unsigned int i = 0; i < NumberOfNodes; i++) {
-        if (colors[i] == white) {
-            currentRoot = i;
-            visit(i, colors);
-        }
-    }
+//    for (unsigned int i = 0; i < NumberOfNodes; i++) {
+//        if (colors[i] == white) {
+    currentRoot = 0;
+    visit(0, colors);
+//        }
+//    }
     
     for (Color &color : colors) {
         if (color != black) {
