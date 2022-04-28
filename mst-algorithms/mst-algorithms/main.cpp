@@ -42,7 +42,7 @@ int testUnionFind(){
 
 
 void testKruskal(){
-    int size = 7;
+    int size = 6;
     UnDirectedGraph g{};
     GraphEdge edges[] = {
         // (x, y, w) -> edge from x to y with weight w
@@ -170,7 +170,7 @@ int main(int argc, const char * argv[]) {
 //    fileName = parseFileName(argc, argv);
     // graph edges array.
 //    TestGraphFunctions();
-//    testKruskal(); // fails tests currently
+    testKruskal(); // fails tests currently
 //    TestHeapFunctions();
 //    TestPrim();
 //    TestFileParser(argc, argv);

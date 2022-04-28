@@ -36,7 +36,7 @@ class UnDirectedGraph{
     
 public:
     
-    std::vector<GraphVertex> head;                //adjacency list as array of pointers
+    std::vector<GraphVertex> head;
     
     int GetNumberOfNodes() {return this->NumberOfNodes;};
     int GetNumberOfEdges() {return this->NumberOfEdges;};

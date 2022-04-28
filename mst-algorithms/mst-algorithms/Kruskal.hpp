@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include "graph.hpp"
 #include "UnionFind.hpp"
+#include <vector>
 using namespace std;
 
 
@@ -31,7 +32,7 @@ public:
         int u ,v ,minimal_weight=0;
         int n = this->graph.GetNumberOfNodes();
         int m = this->graph.GetNumberOfEdges();
-        GraphEdge* edgeList = this->getEdgeList(this->graph,n,m);
+        vector<GraphEdge> edgeList = this->getEdgeList(this->graph,n,m);
         UnionFind UF = UnionFind(n);
         quickSort(edgeList, 0, m-1);
     
@@ -48,7 +49,6 @@ public:
             }
         }
         cout << "minimal: " << minimal_weight << endl;
-        free(edgeList);
         return minimal_weight;
     }
     
@@ -56,16 +56,16 @@ public:
     
 private:
     void swapGraphEdge(GraphEdge *a, GraphEdge *b);
-    int partition (GraphEdge * arr, int low, int high);
-    void quickSort(GraphEdge * arr, int low, int high);
-    GraphEdge* getEdgeList(UnDirectedGraph graph , int NumOfNodes, int NumOfEdges)
+    int partition (vector<GraphEdge> arr, int low, int high);
+    void quickSort(vector<GraphEdge> arr, int low, int high);
+    vector<GraphEdge> getEdgeList(UnDirectedGraph graph , int NumOfNodes, int NumOfEdges)
     {
-        GraphEdge* edgeList = (GraphEdge*)malloc(NumOfEdges * sizeof(GraphEdge));
+        vector<GraphEdge> edgeList;
+        edgeList.resize(NumOfEdges * 2);
         int counter = 0;
         for (int i=0; i < NumOfNodes; i++) {
             for (GraphEdge edge: graph.GetAdjList(i)) {
                 edgeList[counter++] = edge;
-                
                 }
             }
     ;
