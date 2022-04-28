@@ -29,17 +29,20 @@ class UnDirectedGraph{
     GraphEdge makeEdge(unsigned int vertex_u, unsigned int vertex_v, int weight);
     void DFS();
     void visit(unsigned int vertex, std::vector<Color> &colors);
-    int NumberOfNodes;  // number of nodes in the graph
-    int NumberOfEdges=0;
+    int NumberOfNodes = 0;  // number of nodes in the graph
+    int NumberOfEdges = 0;
     unsigned int currentRoot;
+    std::vector<GraphEdge> edgeList;
     
     
 public:
     
     std::vector<GraphVertex> head;
     
-    int GetNumberOfNodes() {return this->NumberOfNodes;};
-    int GetNumberOfEdges() {return this->NumberOfEdges;};
+    
+    int GetNumberOfNodes() {return NumberOfNodes;};
+    int GetNumberOfEdges() {return NumberOfEdges;};
+    std::vector<GraphEdge> GetEdgesList() {return edgeList;};
     void MakeEmptyGraph(unsigned int NumberOfNodes);
     bool IsAdjacent(unsigned int vertex_u, unsigned int vertex_v);
     bool IsGraphConnected();

@@ -51,7 +51,7 @@ void PrimMST(UnDirectedGraph graph)
             if (not inMstTree[v] and weight < keys[v]) {
                 keys[v] = weight;
                 parents[v] = u.vertex.VertexIndex;
-                heap.DecreaseKey(v, weight); // TODO: Decrese key should get endVertex index
+                heap.DecreaseKey(v, weight);
             }
         }
 

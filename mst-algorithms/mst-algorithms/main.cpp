@@ -58,6 +58,7 @@ void testKruskal(){
     
     Kruskal k = Kruskal(g);
     int minWeight = k.RunKruskal();
+    PrimMST(g);
     cout << minWeight << endl;
     
     

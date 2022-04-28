@@ -17,6 +17,7 @@ void UnDirectedGraph::MakeEmptyGraph(unsigned int NumberOfNodes)
     }
     AddEdge(0, 1, 0); // workaround for not starting at vertex 0;
     this->NumberOfNodes = NumberOfNodes;
+    
 }
 
 bool UnDirectedGraph::IsAdjacent(unsigned int vertex_u, unsigned int vertex_v)
@@ -37,6 +38,7 @@ std::vector<GraphEdge> UnDirectedGraph::GetAdjList(unsigned int vertex_v)
 void UnDirectedGraph::AddEdge(unsigned int vertex_u, unsigned int vertex_v, int weight)
 {
     head[vertex_u].edges.push_back(makeEdge(vertex_u,vertex_v, weight));
+    edgeList.push_back(makeEdge(vertex_u,vertex_v, weight));
     head[vertex_v].edges.push_back(makeEdge(vertex_v,vertex_u, weight));
     this->NumberOfEdges++;
 }
@@ -44,10 +46,11 @@ void UnDirectedGraph::AddEdge(unsigned int vertex_u, unsigned int vertex_v, int 
 void UnDirectedGraph::AddEdge(GraphEdge edge)
 {
     head[edge.startVertex].edges.push_back(edge);
+    edgeList.push_back(edge);
     head[edge.endVertex].edges.push_back(makeEdge(edge.endVertex,
                                                   edge.startVertex,
                                                   edge.weight));
-    this->NumberOfEdges++;
+    NumberOfEdges++;
 }
 
 GraphEdge UnDirectedGraph::makeEdge(unsigned int vertex_u, unsigned int vertex_v, int weight)
@@ -65,6 +68,9 @@ void UnDirectedGraph::RemoveEdge(unsigned int vertex_u, unsigned int vertex_v)
                                      head[vertex_v].edges.end(),
                                [=](GraphEdge element) { return element.endVertex == vertex_u; }),
                       head[vertex_v].edges.end());
+    edgeList.erase(std::remove_if(edgeList.begin(),
+                                  edgeList.end(),
+                               [=](GraphEdge element) { return element.endVertex == vertex_v && element.startVertex == vertex_u; }), edgeList.end());
     this->NumberOfEdges--;
 }
 

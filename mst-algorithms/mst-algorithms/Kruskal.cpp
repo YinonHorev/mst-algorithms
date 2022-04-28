@@ -16,7 +16,7 @@ void Kruskal::swapGraphEdge(GraphEdge *a, GraphEdge *b)
 }
  
 
-int Kruskal::partition (vector<GraphEdge> arr, int low, int high)
+int Kruskal::partition (vector<GraphEdge> &arr, int low, int high)
 {
 
     int pivot = arr[high].weight; // pivot
@@ -36,7 +36,7 @@ int Kruskal::partition (vector<GraphEdge> arr, int low, int high)
 }
  
 
-void Kruskal::quickSort(vector<GraphEdge> arr, int low, int high)
+void Kruskal::quickSort(vector<GraphEdge> &arr, int low, int high)
 {
     if (low < high)
     {
