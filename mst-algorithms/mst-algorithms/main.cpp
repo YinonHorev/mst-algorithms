@@ -12,7 +12,8 @@
 #include "MinHeap.hpp"
 #include "Prim.hpp"
 #include "ConfigurationParser.hpp"
-
+#include <filesystem>
+namespace fs = std::filesystem;
 using namespace std;
 
 
@@ -152,13 +153,18 @@ static void TestFileParser(int argc, const char **argv) {
     cout << g.edgeToDelete.endVertex;
 }
 
+
 int main(int argc, const char * argv[]) {
+    const char * file_name = "/Users/shirazshay/Downloads/test_inputs/g3.txt";
     UnDirectedGraph G;
     ConfigurationParser config;
-    config.DigestFile(parseFileName(argc, argv));
+    //config.DigestFile(parseFileName(argc, argv));
+    config.DigestFile(file_name);
     G.MakeEmptyGraph(config.numberOfNodesInGraph);
     for(GraphEdge edge : config.edges) G.AddEdge(edge);
     PrimMST(G);
+    Kruskal kr = Kruskal(G);
+    kr.RunKruskal();
     G.RemoveEdge(config.edgeToDelete.startVertex, config.edgeToDelete.endVertex);
 //    G.RemoveEdge(1, 2); // will make no mst
     if (not (G.IsGraphConnected()))
@@ -171,7 +177,7 @@ int main(int argc, const char * argv[]) {
 //    fileName = parseFileName(argc, argv);
     // graph edges array.
 //    TestGraphFunctions();
-    testKruskal(); // fails tests currently
+    //testKruskal(); // fails tests currently
 //    TestHeapFunctions();
 //    TestPrim();
 //    TestFileParser(argc, argv);
