@@ -50,3 +50,27 @@ void Kruskal::quickSort(vector<GraphEdge> &arr, int low, int high)
         quickSort(arr, pi + 1, high);
     }
 }
+
+int Kruskal::RunKruskal(){
+    int u ,v ,minimal_weight=0;
+    int n = this->graph.GetNumberOfNodes();
+    int m = this->graph.GetNumberOfEdges();
+    vector<GraphEdge> edgeList = graph.GetEdgesList();
+    UnionFind UF = UnionFind(n);
+    quickSort(edgeList, 0, m-1);
+
+    for (int i = 0 ; i < n ; i++) {
+        UF.MakeSet(i);
+    }
+            
+    for (int i = 0 ; i < m ; i++ ) {
+        u = UF.Find(edgeList[i].startVertex);
+        v = UF.Find(edgeList[i].endVertex);
+        if (u != v) {
+            minimal_weight += edgeList[i].weight;
+            UF.Union(u, v);
+        }
+    }
+    cout << "Kruskal: " << minimal_weight << endl;
+    return minimal_weight;
+}
