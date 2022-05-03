@@ -6,6 +6,7 @@
 //
 
 #include "Kruskal.hpp"
+#include "Logger.hpp"
 
 
 void Kruskal::swapGraphEdge(GraphEdge *a, GraphEdge *b)
@@ -71,6 +72,6 @@ int Kruskal::RunKruskal(){
             UF.Union(u, v);
         }
     }
-    cout << "Kruskal: " << minimal_weight << endl;
+    Logger::getInstance() << "Kruskal " << minimal_weight << "\n";
     return minimal_weight;
 }

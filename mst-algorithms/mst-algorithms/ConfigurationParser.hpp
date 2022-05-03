@@ -10,8 +10,6 @@
 
 
 #include <iostream>
-#include <fstream>
-#include <sstream>
 #include <stdio.h>
 #include <vector>
 #include <string>
@@ -31,7 +29,7 @@ class ConfigurationParser
         getline(fileInput,line);
         numOfValidInputs = sscanf(line.c_str(), "%d %d %d", &startVertex, &endVertex, &weight);
         if (numOfValidInputs != 3){
-            std::cout << "input invalid" << std::endl; //  bad vertex format
+            Logger::getInstance() << "input invalid" << "\n"; //  bad vertex format
             exit(1);
         }
         return GraphEdge{.startVertex = startVertex,
@@ -45,10 +43,19 @@ class ConfigurationParser
     GraphEdge parseEdgeToDelete(std::ifstream &fileInput) {
         unsigned int startVertex, endVertex;
         int weight;
+        
         fileInput >> startVertex;
+        
+        if (fileInput.eof())
+        {
+            Logger::getInstance() << "input invalid" << "\n"; // bad number of vertex
+            exit(1);
+        }
+        
         fileInput >> endVertex;
+        
         if (fileInput >> weight) {
-            std::cout << "input invalid" << std::endl; // bad number of vertex
+            Logger::getInstance() << "input invalid" << "\n"; // bad number of vertex
             exit(1);
             
         }
@@ -65,7 +72,7 @@ class ConfigurationParser
         int numOfValidInputs = sscanf(line.c_str(), "%d", &intToRead);
         if (numOfValidInputs != 1)
             {
-                std::cout << "input invalid" << std::endl; //wrong value
+                Logger::getInstance() << "No MST" << "input invalid" << "\n"; //wrong value
                 exit(1);
             }
         }
@@ -76,7 +83,6 @@ class ConfigurationParser
     int numberOfEdgesInGraph;
     std::vector<GraphEdge> edges;
     GraphEdge edgeToDelete;
-    std::string outputFilePath;
     
     void ParseFile(const char* filePath)
     {
@@ -85,7 +91,7 @@ class ConfigurationParser
         fileInput.open(filePath);
         
         if (!fileInput.is_open()) {
-            std::cout << "input invalid"; // File Not found
+            Logger::getInstance() << "input invalid" << "\n"; // File Not found
             exit(1);
         }
         
@@ -105,7 +111,6 @@ class ConfigurationParser
     
     void ParseInputFromUser(int argc, const char** argv)
     {
-        logger = Logger(argv[2])
         ParseFile(argv[1]);
     }
         

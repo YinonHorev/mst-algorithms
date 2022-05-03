@@ -11,25 +11,47 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <sstream>
 
-class Logger {
-    std::string filename;
-    std::ofstream logFile;
+class Logger
+{
+    inline static const char* pathToLogFile;
+    std::stringstream m_Stream;
+    Logger() {}
     
-public:
+    public:
+        static void SetPathToLogFile(const char* _pathToLogFile)
+        {
+            pathToLogFile = _pathToLogFile;
+        }
     
-    Logger(std::string _filename)
-    {
-        filename = _filename;
-        logFile.open(filename);
-    }
-    void Print(std::string logLine)
-    {
-        std::cout << logLine << std::endl;
-        logFile << logLine << std::endl;
-    }
-    ~Logger() {logFile.close();}
-}
+        static Logger& getInstance()
+        {
+            static Logger instance;
+                                  
+            return instance;
+        }
+
+        Logger(Logger const&) = delete;
+        void operator=(Logger const&)  = delete;
+    
+        template <class T>
+        Logger& operator<<(const T& thing) { m_Stream << thing; return *this; }
+    
+        ~Logger() {
+            std::filebuf file;
+            
+            file.open(pathToLogFile, std::ios::out);
+            std::ostream Out(&file);
+            
+            std::cout << m_Stream.rdbuf();
+            m_Stream.seekg(0, std::ios::beg);
+            Out << m_Stream.rdbuf();
+            Out.flush();
+            
+            file.close();
+        }
+};
 
 #endif /* logger_hpp */
 
