@@ -12,8 +12,9 @@
 #include "MinHeap.hpp"
 #include "Prim.hpp"
 #include "ConfigurationParser.hpp"
-#include <filesystem>
-namespace fs = std::filesystem;
+#include "logger.hpp"
+
+
 using namespace std;
 
 
@@ -149,38 +150,34 @@ const char* parseFileName(int argc, const char **argv) {
 static void TestFileParser(int argc, const char **argv) {
     const char* fileName = parseFileName(argc, argv); // should be configured in debug scheme
     ConfigurationParser g;
-    g.DigestFile(fileName);
+    g.ParseFile(fileName);
     cout << g.edgeToDelete.endVertex;
-}
+} // TODO: delete all tests before submition
 
 
 int main(int argc, const char * argv[]) {
-    const char * file_name = "/Users/shirazshay/Downloads/test_inputs/g3.txt";
+    
     UnDirectedGraph G;
     ConfigurationParser config;
-    //config.DigestFile(parseFileName(argc, argv));
-    config.DigestFile(file_name);
+    config.ParseInputFromUser(argc, argv);
+    Logger log{argv[2]};
     G.MakeEmptyGraph(config.numberOfNodesInGraph);
     for(GraphEdge edge : config.edges) G.AddEdge(edge);
     PrimMST(G);
+    
     Kruskal kr = Kruskal(G);
     kr.RunKruskal();
+    
     G.RemoveEdge(config.edgeToDelete.startVertex, config.edgeToDelete.endVertex);
-//    G.RemoveEdge(1, 2); // will make no mst
+    
     if (not (G.IsGraphConnected()))
     {
         cout << "No MST";
         exit(0);
     }
-    PrimMST(G);
-//    const char* fileName;
-//    fileName = parseFileName(argc, argv);
-    // graph edges array.
-//    TestGraphFunctions();
-    //testKruskal(); // fails tests currently
-//    TestHeapFunctions();
-//    TestPrim();
-//    TestFileParser(argc, argv);
+    
+    kr = Kruskal(G);
+    kr.RunKruskal();
     
     return 0;
 }

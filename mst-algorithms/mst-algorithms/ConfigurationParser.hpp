@@ -16,12 +16,12 @@
 #include <vector>
 #include <string>
 #include "graph.hpp"
+#include "Logger.hpp"
 
 using namespace std;
 
 class ConfigurationParser
 {
-    
     GraphEdge parseEdge(std::ifstream &fileInput)
     {
         unsigned int startVertex, endVertex;
@@ -31,7 +31,7 @@ class ConfigurationParser
         getline(fileInput,line);
         numOfValidInputs = sscanf(line.c_str(), "%d %d %d", &startVertex, &endVertex, &weight);
         if (numOfValidInputs != 3){
-            std::cout << "Parse err - bad vertex format\n";
+            std::cout << "input invalid" << std::endl; //  bad vertex format
             exit(1);
         }
         return GraphEdge{.startVertex = startVertex,
@@ -48,7 +48,7 @@ class ConfigurationParser
         fileInput >> startVertex;
         fileInput >> endVertex;
         if (fileInput >> weight) {
-            std::cout << "Parse err - bad number of vertex";
+            std::cout << "input invalid" << std::endl; // bad number of vertex
             exit(1);
             
         }
@@ -65,7 +65,7 @@ class ConfigurationParser
         int numOfValidInputs = sscanf(line.c_str(), "%d", &intToRead);
         if (numOfValidInputs != 1)
             {
-                std::cout << "Parse err - wrong value";
+                std::cout << "input invalid" << std::endl; //wrong value
                 exit(1);
             }
         }
@@ -76,15 +76,16 @@ class ConfigurationParser
     int numberOfEdgesInGraph;
     std::vector<GraphEdge> edges;
     GraphEdge edgeToDelete;
+    std::string outputFilePath;
     
-    void DigestFile(const char* filePath)
+    void ParseFile(const char* filePath)
     {
         std::string line;
         std::ifstream fileInput;
         fileInput.open(filePath);
         
         if (!fileInput.is_open()) {
-            std::cout << "File err";
+            std::cout << "input invalid"; // File Not found
             exit(1);
         }
         
@@ -100,7 +101,12 @@ class ConfigurationParser
         edgeToDelete = parseEdgeToDelete(fileInput);
         fileInput.close();
 
-        
+    }
+    
+    void ParseInputFromUser(int argc, const char** argv)
+    {
+        logger = Logger(argv[2])
+        ParseFile(argv[1]);
     }
         
 };
