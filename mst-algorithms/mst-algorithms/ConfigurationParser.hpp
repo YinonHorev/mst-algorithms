@@ -38,8 +38,6 @@ class ConfigurationParser
     }
     
     
-
-    
     GraphEdge parseEdgeToDelete(std::ifstream &fileInput) {
         unsigned int startVertex, endVertex;
         int weight;
