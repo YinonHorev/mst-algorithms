@@ -10,6 +10,7 @@
 #include "graph.hpp"
 #include "MinHeap.hpp"
 #include <vector>
+#include "Logger.hpp"
 
 void PrimMST(UnDirectedGraph graph)
 {
@@ -61,7 +62,7 @@ void PrimMST(UnDirectedGraph graph)
         }
     int sum = 0;
     for(int key: keys) sum += key;
-    std::cout << "Prim " << sum << std::endl;
+    Logger::getInstance() << "Prim " << sum << "\n";
 }
  
     // print edges of MST

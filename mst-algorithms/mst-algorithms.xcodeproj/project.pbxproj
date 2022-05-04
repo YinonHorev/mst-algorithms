@@ -29,6 +29,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B043A372281F01DA00D71FA5 /* g2.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = g2.txt; sourceTree = "<group>"; };
+		B043A373281F01DB00D71FA5 /* badNumberOfVertex.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = badNumberOfVertex.txt; sourceTree = "<group>"; };
+		B043A374281F01DB00D71FA5 /* noConnection.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = noConnection.txt; sourceTree = "<group>"; };
+		B043A375281F01DB00D71FA5 /* missingWeight.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = missingWeight.txt; sourceTree = "<group>"; };
+		B043A376281F01DB00D71FA5 /* g3.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = g3.txt; sourceTree = "<group>"; };
+		B043A377281F01DB00D71FA5 /* g4.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = g4.txt; sourceTree = "<group>"; };
+		B043A378281F01DB00D71FA5 /* g1.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = g1.txt; sourceTree = "<group>"; };
+		B043A37A281F07C900D71FA5 /* Logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Logger.hpp; sourceTree = "<group>"; };
 		B0B4CC96281061CA00AB8A2F /* ConfigurationParser.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ConfigurationParser.cpp; sourceTree = "<group>"; };
 		B0B4CC97281061CA00AB8A2F /* ConfigurationParser.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ConfigurationParser.hpp; sourceTree = "<group>"; };
 		B0B4CC9928106A5700AB8A2F /* graphConfig.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = graphConfig.txt; sourceTree = "<group>"; };
@@ -57,6 +65,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B043A371281F01B500D71FA5 /* tests */ = {
+			isa = PBXGroup;
+			children = (
+				B043A373281F01DB00D71FA5 /* badNumberOfVertex.txt */,
+				B043A378281F01DB00D71FA5 /* g1.txt */,
+				B043A372281F01DA00D71FA5 /* g2.txt */,
+				B043A376281F01DB00D71FA5 /* g3.txt */,
+				B043A377281F01DB00D71FA5 /* g4.txt */,
+				B043A375281F01DB00D71FA5 /* missingWeight.txt */,
+				B043A374281F01DB00D71FA5 /* noConnection.txt */,
+			);
+			path = tests;
+			sourceTree = "<group>";
+		};
 		B0B5A706280744FA0091C52A = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +98,7 @@
 		B0B5A711280744FA0091C52A /* mst-algorithms */ = {
 			isa = PBXGroup;
 			children = (
+				B043A371281F01B500D71FA5 /* tests */,
 				B0B5A712280744FA0091C52A /* main.cpp */,
 				B0B5A719280C41080091C52A /* graph.cpp */,
 				B0B5A71A280C41080091C52A /* graph.hpp */,
@@ -90,6 +113,7 @@
 				B0B4CC96281061CA00AB8A2F /* ConfigurationParser.cpp */,
 				B0B4CC97281061CA00AB8A2F /* ConfigurationParser.hpp */,
 				B0B4CC9928106A5700AB8A2F /* graphConfig.txt */,
+				B043A37A281F07C900D71FA5 /* Logger.hpp */,
 			);
 			path = "mst-algorithms";
 			sourceTree = "<group>";
