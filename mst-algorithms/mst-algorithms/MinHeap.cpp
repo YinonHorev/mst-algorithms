@@ -1,6 +1,6 @@
 #include "MinHeap.hpp"
 #include <iostream>
-using namespace std;
+#include<algorithm>
 
 void MinHeap::fixHeapDown(int nodeIndex) {
 
@@ -36,9 +36,10 @@ void MinHeap::Build(UnDirectedGraph G, unsigned int initial_vertex)
         vertexsIndexesInHeap.push_back(i);
         
         heapArray.push_back(HeapNode{
+            .key = INT32_MAX,
             .vertex{.VertexIndex = v.vertex, .edges = v.edges},
-            .indexInHeap = static_cast<unsigned int>(heapArray.size()),
-            .key = INT32_MAX
+            .indexInHeap = static_cast<unsigned int>(heapArray.size())
+            
         });
         i++;
     }
